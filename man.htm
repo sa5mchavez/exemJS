@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iife</title>
+</head>
+<body> 
+
+   <p class="saluda">hola1</p>
+   <p class="saluda">hola2</p>
+   <p class="saluda">hola3</p>
+   <p class="saluda">hola4</p> 
+   <script>
+
+    var entra = "hola";   
+    (function (interna) {
+        console.log(interna);
+    })(entra);
+
+    
+
+   </script>
+
+
+<script>
+
+    (function(){
+        var elems = document.querySelectorAll('.saluda');
+        console.log(elems);
+
+        elems.forEach(function(el){
+            console.log(el.textContent);
+            if(el.textContent==='hola1'){
+                console.log("bla");
+                el.style.display='none';
+            }
+        });
+
+    })();
+
+
+</script>
+    
+
+
+</body>
+</html>

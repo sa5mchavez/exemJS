@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Me</title>
+</head>
+<body>
+    <div id="cont">
+        dato on created : {{dato}}
+        <!--<me-componente nombre="componente"></me-componente>
+        -->
+        <!--
+        <h2>Este genera warning</h2>
+        <me-componente v-for="nom in arr" v-bind:nombre="nom.nombre"></me-componente>
+        -->
+        <br>
+        
+        <me-comp v-for="nom in arr" :nombre="nom" v-bind:key="nom.id"></me-comp>
+        <h1>Con template string</h1>
+        <hola v-for="nom in arr" :nombre="nom" v-bind:key="nom.nombre"></hola>
+
+        <pre>
+            {{$data}}
+        </pre>
+    </div>
+
+
+    <template id="saluda">
+        <h4>hola {{nombre.nombre}}</h4>
+    </template>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+    /*
+    Vue.component('me-componente',{
+        props:['nombre'],
+        template:'<h4>hola {{nombre}}</h4>'
+    });
+    */
+    const elemento = document.getElementById('cont');
+    Vue.component('hola',{
+        props:['nombre'],
+        template:`<h1>Hola
+                    {{nombre.nombre}}           
+                    </h1>
+        `,
+    });
+    Vue.component('me-comp',{
+        props:['nombre'],
+        template:'#saluda'
+    });
+    const v = new Vue({
+        el:elemento,
+        data:{
+            dato:'',
+            arr:[
+                {id:1,nombre:'sam'},
+                {id:2,nombre:'mero'},
+                {id:3,nombre:'yo'}]
+        },
+        created:function(){
+            this.saluda();
+        },
+        methods:{
+            saluda:function(){
+                this.dato="yo mero";
+            }
+        }
+    });
+
+
+    </script>
+
+</body>
+</html>
