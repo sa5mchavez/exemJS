@@ -2,7 +2,7 @@ import shodan
 import requests
 
 
-SHODAN_API_KEY = "72pg7UEUNSj9Y2s2BGp6Myp9lsy1LoEi "
+SHODAN_API_KEY = ""
 api = shodan.Shodan(SHODAN_API_KEY)
 target = 'netweb.com.mx'
 
