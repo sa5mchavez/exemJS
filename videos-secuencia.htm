@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prueba video</title>
+</head>
+<body>
+    
+    <video autoplay="autoplay" loop="loop" muted="muted" playsinline="playsinline" width="100%" height="auto" id="video" >
+        <source id="video_home"  type="video/mp4">
+    </video>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+       document.addEventListener('DOMContentLoaded',function(){
+            var pos = document.getElementsByTagName('video')[0];
+            var myVideo = document.getElementById('video_home');
+
+            pos.setAttribute("poster","http://lifestyle.sytyos.com/skin/default/images/poster-home.jpg");
+            //myVideo.setAttribute("src","http://lifestyle.sytyos.com/skin/default/images/home-desktop.mp4");
+
+            var req = new XMLHttpRequest();
+            req.open('GET', 'home-desktop.mp4', true);
+            req.responseType = 'blob';
+
+            req.onload = function() {
+                // Onload is triggered even on 404, so we need to check the status code
+                if (this.status === 200) {
+                    var videoBlob = this.response;
+                    var vid = URL.createObjectURL(videoBlob);
+                    // Video is now downloaded and we can set it as source on the video element
+                    video.src = vid;
+                }
+            }
+            req.onerror = function() {
+                console.log("Error al cargar video");
+            }
+            req.send();
+       });
+        
+    </script>
+
+</body>
+</html>
